@@ -1,0 +1,222 @@
+.disco-search-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.search-input {
+  padding: 9px 16px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  width: 240px;
+  transition: border-color 0.2s;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  border-color: var(--gold-dark);
+}
+
+.no-results {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 20px 0;
+}
+
+.disco-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.disco-tab {
+  padding: 10px 28px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.disco-tab:hover {
+  border-color: var(--gold-dark);
+  color: var(--text);
+}
+
+.disco-tab.active {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Albums */
+.albums-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.album-card {
+  display: flex;
+  gap: 24px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 12px;
+  padding: 24px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+
+.album-card:hover {
+  border-color: var(--gold-dark);
+}
+
+/* Vinyl record decoration */
+.album-vinyl {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    #1a1a1a 0px,
+    #1a1a1a 2px,
+    #222 2px,
+    #222 4px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px var(--dark-border);
+}
+
+.vinyl-label {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-label span {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.album-info {
+  flex: 1;
+}
+
+.album-year {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+  padding: 2px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.album-title {
+  font-size: 1.15rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.album-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.album-notes {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.album-tracks {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.album-tracks li {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--dark-border);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Singles */
+.singles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.single-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+
+.single-row:hover {
+  border-color: var(--gold-dark);
+}
+
+.single-year {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.single-title {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.single-chart {
+  font-size: 0.8rem;
+  color: var(--gold);
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .album-card {
+    flex-direction: column;
+  }
+  .single-row {
+    grid-template-columns: 50px 1fr;
+  }
+  .single-chart {
+    grid-column: 2;
+    text-align: left;
+  }
+}

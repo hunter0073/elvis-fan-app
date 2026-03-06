@@ -1,0 +1,128 @@
+.music-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 90px;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+
+.track-item:hover {
+  border-color: var(--gold-dark);
+}
+
+.track-item.active {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.track-item-icon {
+  font-size: 1.2rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+.track-item.active .track-item-icon {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.track-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.track-item-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-item-year {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Player panel */
+.player-panel {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.player-track-info {
+  margin-bottom: 24px;
+}
+
+.player-track-info h2 {
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.player-meta {
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.player-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.spotify-embed {
+  border-radius: 12px;
+  border: none;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.spotify-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .music-layout {
+    grid-template-columns: 1fr;
+  }
+  .track-list {
+    position: static;
+  }
+}
