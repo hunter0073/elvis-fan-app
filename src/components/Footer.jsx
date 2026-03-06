@@ -39,6 +39,7 @@ export default function Footer() {
           </a>{' '}
           (public domain). Music previews via Spotify.
         </p>
+        <p className="footer-credit">Made with passion and zero knowledge by Liron Bachar</p>
       </div>
     </footer>
   );

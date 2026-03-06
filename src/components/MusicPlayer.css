@@ -1,0 +1,103 @@
+.music-player {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 15, 15, 0.88);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 50px;
+  padding: 10px 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 168, 76, 0.08);
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.music-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--gold, #c9a84c);
+}
+
+.music-icon {
+  font-size: 0.75rem;
+  min-width: 12px;
+  color: var(--gold, #c9a84c);
+}
+
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+}
+
+.bar {
+  width: 3px;
+  background: var(--gold, #c9a84c);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.1s;
+}
+
+.bar-1 { height: 6px; }
+.bar-2 { height: 10px; }
+.bar-3 { height: 14px; }
+.bar-4 { height: 8px; }
+
+.bar.animate.bar-1 { animation: eq1 0.6s ease-in-out infinite alternate; }
+.bar.animate.bar-2 { animation: eq2 0.5s ease-in-out infinite alternate; }
+.bar.animate.bar-3 { animation: eq3 0.7s ease-in-out infinite alternate; }
+.bar.animate.bar-4 { animation: eq4 0.55s ease-in-out infinite alternate; }
+
+@keyframes eq1 { from { height: 4px; } to { height: 18px; } }
+@keyframes eq2 { from { height: 10px; } to { height: 5px; } }
+@keyframes eq3 { from { height: 16px; } to { height: 6px; } }
+@keyframes eq4 { from { height: 6px; } to { height: 14px; } }
+
+.music-volume {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 72px;
+  height: 3px;
+  background: rgba(201, 168, 76, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.music-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold, #c9a84c);
+  cursor: pointer;
+}
+
+.music-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0 0 0 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.music-close:hover {
+  color: rgba(255,255,255,0.7);
+}

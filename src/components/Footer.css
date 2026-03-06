@@ -104,3 +104,11 @@
 .footer-bottom a:hover {
   color: var(--gold);
 }
+
+.footer-credit {
+  margin-top: 8px;
+  font-size: 0.8rem !important;
+  color: rgba(201,168,76,0.55) !important;
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
