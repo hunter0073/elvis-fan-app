@@ -1,104 +1,135 @@
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 0;
+.bio-page {
+  max-width: 860px;
 }
 
-.timeline-line {
+/* ── CHAPTERS ──────────────────────────────────────────── */
+.bio-chapter {
+  margin-bottom: 64px;
+  border-left: 3px solid var(--gold-dark);
+  padding-left: 28px;
+  position: relative;
+}
+
+.bio-chapter::before {
+  content: '';
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent, var(--gold-dark) 5%, var(--gold-dark) 95%, transparent);
-  transform: translateX(-50%);
+  left: -7px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  box-shadow: 0 0 0 1px var(--gold-dark);
 }
 
-.timeline-item {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: calc(50% + 36px);
-  margin-bottom: 48px;
-  position: relative;
+.chapter-header {
+  margin-bottom: 20px;
 }
 
-.timeline-item.right {
-  justify-content: flex-start;
-  padding-right: 0;
-  padding-left: calc(50% + 36px);
-}
-
-.timeline-content {
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
-  border-radius: 12px;
-  padding: 22px 24px;
-  max-width: 340px;
-  position: relative;
-  transition: border-color 0.2s;
-}
-
-.timeline-content:hover {
-  border-color: var(--gold-dark);
-}
-
-.timeline-year {
+.chapter-period {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--gold);
-  background: rgba(201, 168, 76, 0.1);
-  padding: 3px 10px;
+  background: rgba(201,168,76,0.1);
+  padding: 3px 12px;
   border-radius: 20px;
   margin-bottom: 10px;
 }
 
-.timeline-title {
-  font-size: 1.05rem;
+.chapter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
   color: var(--white);
-  margin-bottom: 8px;
+  line-height: 1.25;
 }
 
-.timeline-body {
-  font-size: 0.88rem;
+.chapter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chapter-body p {
+  font-size: 0.96rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.8;
 }
 
-.timeline-dot {
-  position: absolute;
-  left: 50%;
-  top: 24px;
-  width: 14px;
-  height: 14px;
-  background: var(--gold);
-  border-radius: 50%;
-  transform: translateX(-50%);
-  border: 3px solid var(--black);
-  box-shadow: 0 0 0 1px var(--gold-dark);
-  z-index: 1;
+/* ── KEY FIGURES ───────────────────────────────────────── */
+.figures-heading {
+  margin-top: 40px;
 }
 
-@media (max-width: 700px) {
-  .timeline-line {
-    left: 20px;
-  }
+.figures-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 80px;
+}
 
-  .timeline-item,
-  .timeline-item.right {
-    justify-content: flex-start;
-    padding-right: 0;
-    padding-left: 54px;
-  }
+.figure-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 14px;
+  padding: 28px;
+  transition: border-color 0.25s;
+}
 
-  .timeline-content {
-    max-width: 100%;
-    width: 100%;
-  }
+.figure-card:hover {
+  border-color: rgba(201,168,76,0.4);
+}
 
-  .timeline-dot {
-    left: 20px;
+.figure-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.figure-emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.figure-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+
+.figure-role {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.figure-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.figure-bio p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.78;
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .bio-chapter {
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+  .figure-card {
+    padding: 20px;
   }
 }
