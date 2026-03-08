@@ -3,86 +3,201 @@ import './RareFacts.css';
 
 const BASE = import.meta.env.BASE_URL;
 
-const facts = [
+const categories = [
   {
-    num: '01',
-    title: 'The Satellite Concert That Beat the Moon Landing',
-    body: 'The "Aloha from Hawaii" concert on January 14, 1973 was the first live global satellite broadcast of a single performer. Watched by an estimated 1.5 billion people — more than tuned in for the Apollo 11 Moon landing. NBC alone pulled 51% of the U.S. audience.',
-    tag: 'Vegas Era · 1973',
+    id: 'origins',
+    emoji: '🧬',
+    label: 'Origins & Early Life',
+    facts: [
+      {
+        title: 'Born Blonde',
+        body: 'Elvis was born naturally blonde. His hair gradually darkened as a teen, and he spent three years slowly dyeing it darker — once a month touching up his hair, eyebrows, and famous sideburns.',
+      },
+      {
+        title: 'Shoe Polish to Miss Clairol',
+        body: 'He initially used shoe polish to dye his hair black, inspired by his favorite actor Tony Curtis. He later switched to a specific dye called Miss Clairol 51D in "Black Velvet" — and even dyed his eyelashes.',
+      },
+      {
+        title: 'The $6.95 Guitar',
+        body: 'His very first guitar was a cigar box with a hole cut in it and a string pulled across. His parents bought him a $6.95 guitar in 1946 — but what he actually wanted was a bike.',
+      },
+      {
+        title: 'Rotten Fruit & Broken Strings',
+        body: 'In school, kids called him "trashy" and threw rotten fruit at him. Some even cut his guitar strings — but classmates who knew how much he loved his guitar scraped money together to buy him new ones.',
+      },
+    ],
   },
   {
-    num: '02',
-    title: 'His Manager Was an Illegal Immigrant — and Elvis Never Knew',
-    body: '"Colonel" Tom Parker\'s real name was Andreas Cornelis van Kuijk. He was a Dutch illegal immigrant who could never obtain a U.S. passport. That\'s the entire reason Elvis never performed outside North America. Parker\'s secret single-handedly imprisoned Elvis to a continent.',
-    tag: 'Behind the Scenes',
+    id: 'music',
+    emoji: '🎤',
+    label: 'Music Secrets',
+    facts: [
+      {
+        title: 'He Never Wrote a Song',
+        body: 'Elvis never wrote a single song in his life. In a 1957 interview, he admitted: "I never wrote a song in my life… I\'ve never even had an idea for a song." He also admitted he couldn\'t actually play guitar despite carrying one on stage.',
+      },
+      {
+        title: 'How the "Co-Writing" Credits Worked',
+        body: 'His "co-writing" credits were the result of Colonel Parker strong-arming songwriters into giving up a third of their royalties in exchange for Elvis recording their song. Elvis recorded over 600 songs without writing any of them.',
+      },
+      {
+        title: 'An Album With No Songs',
+        body: 'He released an album in 1974 called "Having Fun with Elvis on Stage" — which contained not a single song. It was just recordings of him talking between performances.',
+      },
+      {
+        title: 'Rejected by a Gospel Quartet',
+        body: 'At 19, Elvis auditioned to join a gospel quartet called the Songfellows — and was rejected. They told him he couldn\'t sing.',
+      },
+      {
+        title: 'A Recording His Mother Never Heard',
+        body: 'His very first recording in 1953 — a $4 demo made as a birthday gift for his mother — was never heard by her, because the Presley family didn\'t own a record player.',
+      },
+    ],
   },
   {
-    num: '03',
-    title: 'The FBI File on The King',
-    body: 'The FBI maintained a 663-page file on Elvis Presley for over 20 years, investigating alleged threats against his life, suspected ties to organized crime in Las Vegas, and a bizarre scheme where a promoter threatened to expose him for draft evasion. The file is publicly available today.',
-    tag: 'Declassified',
+    id: 'manager',
+    emoji: '🌍',
+    label: 'The Manager Who Trapped Him',
+    facts: [
+      {
+        title: 'The Illegal Immigrant Who Kept Elvis Home',
+        body: 'The real reason Elvis never performed outside the US (except 3 shows in Canada) was Colonel Tom Parker. Parker was actually born in the Netherlands as Andreas Cornelis van Kuijk and was living in the US illegally — he was terrified he wouldn\'t be allowed back in if he left.',
+      },
+      {
+        title: '50% — Discovered Only After Death',
+        body: 'Parker was secretly taking up to 50% of Elvis\'s earnings from music and films — a fact only fully discovered after Elvis\'s death.',
+      },
+    ],
   },
   {
-    num: '04',
-    title: 'He Walked Into the White House With a Gun',
-    body: 'On December 21, 1970, Elvis showed up unannounced at the White House gate, handed Nixon a handwritten letter, and was granted an Oval Office meeting. He arrived in a black velvet cape and sunglasses and asked to be appointed a Federal Agent at Large — then offered Nixon a Colt .45 pistol as a gift. Nixon said yes to the badge.',
-    tag: 'December 21, 1970',
+    id: 'karate',
+    emoji: '🥋',
+    label: 'Karate Obsession',
+    facts: [
+      {
+        title: '"The Tiger"',
+        body: 'Elvis held black belts in two styles of karate: Tae Kwon Do and Kang Rhee. He even traveled all the way to Paris to track down a respected Korean karate teacher. He preferred to be called by his karate name: "The Tiger."',
+      },
+      {
+        title: 'Jumpsuits Built for Kicks',
+        body: 'His iconic jumpsuits were made from figure skater material specifically to accommodate his karate moves without tearing.',
+      },
+    ],
   },
   {
-    num: '05',
-    title: 'He Held a 7th-Degree Black Belt in Karate',
-    body: 'Elvis began training in karate while in the U.S. Army in Germany (1958) and never stopped. He held an 8th-degree black belt in the art of Tang Soo Do, trained almost daily in Las Vegas, and incorporated karate moves directly into his stage performance. He even co-founded a dojo in Memphis.',
-    tag: 'TCB — Taking Care of Business',
+    id: 'personal',
+    emoji: '🐒',
+    label: 'Wild Personal Life',
+    facts: [
+      {
+        title: 'Scatter the Chimp',
+        body: 'Elvis owned a pet chimpanzee named Scatter, who once reportedly tried to attack his girlfriend. He also trained a mynah bird to repeat words to entertain friends.',
+      },
+      {
+        title: 'The Collector',
+        body: 'He collected antique guns, comic books, and medieval armor, filling entire rooms at Graceland with them.',
+      },
+      {
+        title: 'Inspired by a Comic Book Hero',
+        body: 'Many historians believe Elvis\'s iconic look — the hairstyle, sideburns, and cape-like jumpsuits — was secretly inspired by a comic book superhero named Captain Marvel Jr. His comic collection is still in Graceland\'s attic.',
+      },
+      {
+        title: 'The Cadillac Giver',
+        body: 'He regularly gave away Cadillacs to total strangers, just to watch their reaction.',
+      },
+    ],
   },
   {
-    num: '06',
-    title: 'The Man Who Gave Away Over a Hundred Cadillacs',
-    body: 'Elvis gave away Cadillacs to friends, strangers in showrooms, police officers, nurses — anyone who crossed his path when generosity struck. General Motors quietly gave him a dealer\'s license so he could buy at wholesale price. In one day in 1975, he bought 14 Cadillacs as gifts.',
-    tag: 'Generosity',
+    id: 'quirks',
+    emoji: '😨',
+    label: 'Superstitions & Quirks',
+    facts: [
+      {
+        title: 'His Own Cutlery',
+        body: 'Elvis carried his own personal cutlery to every restaurant — a habit from childhood. He also brushed his teeth compulsively after every meal.',
+      },
+      {
+        title: 'Black Cats & Dressing Right',
+        body: 'If a black cat crossed the road, he would take a completely different route — even if it added miles. He also always dressed right side first: right sleeve, right pant leg, right sock, right shoe — before touching his left side.',
+      },
+      {
+        title: 'Suspicious of the Unsuperstitious',
+        body: 'His cousin said: "Elvis was superstitious to the point of being suspicious of anyone who wasn\'t superstitious."',
+      },
+    ],
   },
   {
-    num: '07',
-    title: 'He Wore Three Religions at Once',
-    body: 'Elvis wore a gold Christian cross, a Star of David, and the Hebrew letter "Chai" simultaneously around his neck. When asked why, he said: "I don\'t want to miss out on heaven due to a technicality." He was deeply and genuinely spiritual — not performatively religious.',
-    tag: 'Personal',
+    id: 'food',
+    emoji: '🍔',
+    label: 'Food Obsessions',
+    facts: [
+      {
+        title: 'Breakfast with Butter Running Down His Arms',
+        body: 'His cook Mary Jenkins revealed his typical breakfast: homemade biscuits fried in butter, sausage patties, four scrambled eggs, and sometimes fried bacon — "with butter running down his arms."',
+      },
+      {
+        title: 'The Fool\'s Gold — 8,000 Calories',
+        body: 'His most extreme food obsession was the "Fool\'s Gold" sandwich — a hollowed-out loaf of bread stuffed with an entire jar of peanut butter, an entire jar of jelly, and a full pound of bacon. It clocked in at approximately 8,000 calories.',
+      },
+      {
+        title: 'The Sandwich He Never Ate',
+        body: 'His own daughter Lisa Marie said she never once saw him eat the famous fried peanut butter and banana sandwich that\'s become his most iconic food association.',
+      },
+    ],
   },
   {
-    num: '08',
-    title: 'The Jumpsuits Cost More Than a House',
-    body: 'During the Vegas years, designer Bill Belew created over 300 custom jumpsuits for Elvis. Each one cost between $10,000 and $65,000 — equivalent to $80,000–$500,000 today. The "Aloha Eagle" suit worn at the satellite concert was insured for $10,000 and weighed 30 pounds with its gemstone work.',
-    tag: 'Vegas Era · 1969–1977',
+    id: 'hollywood',
+    emoji: '🎬',
+    label: 'Hollywood & Fame',
+    facts: [
+      {
+        title: 'The Tooth That Required Vocal Cord Surgery',
+        body: 'While filming Jailhouse Rock, Elvis lost a tooth cap that became lodged in his lung during a dance scene. Surgery was required — which meant separating his vocal cords. The character he was playing in the film also had a vocal cord injury — a bizarre coincidence.',
+      },
+      {
+        title: 'More Viewers Than the Moon Landing',
+        body: 'His 1973 "Aloha From Hawaii" concert was broadcast to 40 countries and watched by more people than witnessed the first Moon landing.',
+      },
+      {
+        title: 'The Vaccination That Moved a Nation',
+        body: 'In 1956, Elvis publicly received the polio vaccine before his Ed Sullivan Show appearance. Historians believe this single act meaningfully boosted vaccination rates among American teenagers who idolized him.',
+      },
+    ],
   },
   {
-    num: '09',
-    title: 'He Rented Memphis for the Night',
-    body: 'Elvis regularly rented out Memphis Fairgrounds amusement park, Rainbow Skating Rink, and entire movie theaters for private use — always starting at midnight, after they closed to the public. He\'d invite 200+ friends and go until dawn. Graceland\'s staff called them "midnight raids."',
-    tag: 'Memphis',
-  },
-  {
-    num: '10',
-    title: 'The Twin He Spoke to for the Rest of His Life',
-    body: 'Elvis had a twin brother, Jesse Garon Presley, who was stillborn on January 8, 1935 — the same hour Elvis was born. Elvis kept Jesse\'s grave nearby and spoke about him throughout his life, believing he carried both of their spirits. "When one twin dies, the other gets the strength of both," he once said.',
-    tag: 'January 8, 1935',
-  },
-  {
-    num: '11',
-    title: 'The 1968 Comeback Was Watched by 42% of America',
-    body: 'Before the NBC Comeback Special aired on December 3, 1968, Elvis was widely written off as irrelevant — a Hollywood B-movie star. The special drew 42% of the entire U.S. television audience, the highest-rated show of the year, and is now ranked among the greatest moments in the history of television.',
-    tag: 'December 3, 1968',
-  },
-  {
-    num: '12',
-    title: 'His Last Concert Was 52 Days Before He Died',
-    body: 'Elvis performed his final concert on June 26, 1977 in Indianapolis, Indiana — Market Square Arena. He sang 24 songs, including "Suspicious Minds" and "Can\'t Help Falling in Love." Footage shows a clearly unwell performer who still brought the house down. He died 52 days later, on August 16, 1977. He was 42.',
-    tag: 'June 26, 1977',
+    id: 'dark',
+    emoji: '🕵️',
+    label: 'Weird & Dark',
+    facts: [
+      {
+        title: 'A German Wine Grower Named Pressler',
+        body: 'Elvis\'s family surname "Presley" traces back to a German wine grower named Johann Valentin Pressler who emigrated from Germany in 1710. The name was anglicized to "Presley" by a family member fighting in the Confederate Army during the Civil War.',
+      },
+      {
+        title: 'The Loaded Pistol & Alice Cooper',
+        body: 'In 1971 in a Las Vegas hotel, Elvis summoned Alice Cooper, handed him a loaded pistol, and asked Cooper to put it to his own head — as a demonstration of how to stop someone with a gun.',
+      },
+      {
+        title: 'His Last Words',
+        body: 'His last words, spoken to his fiancée Ginger Alden, were: "I\'m going to the bathroom to read."',
+      },
+    ],
   },
 ];
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.48, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
 
 export default function RareFacts() {
   return (
     <div className="rare-facts">
 
-      {/* Hero */}
+      {/* ── HERO ── */}
       <section className="rf-hero">
         <div className="rf-hero-bg" aria-hidden="true" />
         <motion.div
@@ -93,39 +208,54 @@ export default function RareFacts() {
         >
           <img
             src={`${BASE}logo.png`}
-            alt="Elvis Fan Site"
+            alt="Elvis TCB"
             className="rf-logo"
             onError={e => { e.currentTarget.style.display = 'none'; }}
           />
           <p className="rf-eyebrow">The Untold Stories</p>
           <h1 className="rf-title">Rare Facts</h1>
-          <p className="rf-sub">Twelve things even devoted fans rarely know about The King</p>
+          <p className="rf-sub">
+            Unknown & rare facts about The King — from the man behind the myth
+          </p>
         </motion.div>
       </section>
 
-      {/* Facts grid */}
-      <section className="rf-grid-section">
-        <div className="rf-grid">
-          {facts.map(({ num, title, body, tag }, i) => (
-            <motion.article
-              key={num}
-              className="rf-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+      {/* ── CATEGORIES ── */}
+      <div className="rf-categories">
+        {categories.map((cat) => (
+          <section key={cat.id} className="rf-category">
+            <motion.div
+              className="rf-cat-header"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+              transition={{ duration: 0.55 }}
             >
-              <div className="rf-card-header">
-                <span className="rf-num">{num}</span>
-                <span className="rf-tag">{tag}</span>
-              </div>
-              <h2 className="rf-card-title">{title}</h2>
-              <p className="rf-card-body">{body}</p>
-              <div className="rf-card-line" aria-hidden="true" />
-            </motion.article>
-          ))}
-        </div>
-      </section>
+              <span className="rf-cat-emoji" aria-hidden="true">{cat.emoji}</span>
+              <h2 className="rf-cat-title">{cat.label}</h2>
+            </motion.div>
+
+            <div className="rf-grid">
+              {cat.facts.map((fact, i) => (
+                <motion.article
+                  key={fact.title}
+                  className="rf-card"
+                  custom={i}
+                  variants={cardVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                >
+                  <h3 className="rf-card-title">{fact.title}</h3>
+                  <p className="rf-card-body">{fact.body}</p>
+                </motion.article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
     </div>
   );
 }
