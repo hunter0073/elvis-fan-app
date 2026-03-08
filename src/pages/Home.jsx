@@ -27,7 +27,7 @@ const vegasPhotos = [
     caption: 'Jailhouse Rock era, 1957',
   },
   {
-    src: `${BASE}elvis-hero.jpg`,
+    src: `${BASE}elvis-hero.png`,
     caption: 'Vegas Stage — The King, 1970s',
   },
   {
@@ -35,7 +35,7 @@ const vegasPhotos = [
     caption: 'The original rock rebel',
   },
   {
-    src: `${BASE}elvis-hero.jpg`,
+    src: `${BASE}elvis-hero.png`,
     caption: 'International Hotel, Las Vegas, 1970',
   },
 ];
@@ -84,7 +84,7 @@ export default function Home() {
       {/* ── HERO ── */}
       <section
         className="hero"
-        style={{ backgroundImage: `url(${BASE}elvis-hero.jpg)` }}
+        style={{ backgroundImage: `url(${BASE}elvis-hero.png)` }}
       >
         <div className="hero-overlay" aria-hidden="true" />
         <div className="hero-spotlight" aria-hidden="true" />
