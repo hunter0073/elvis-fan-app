@@ -40,6 +40,37 @@ const vegasPhotos = [
   },
 ];
 
+const newsItems = [
+  {
+    tag: 'Film',
+    date: '2022',
+    title: 'Baz Luhrmann\'s "Elvis" Biopic',
+    body: 'Warner Bros\' blockbuster starring Austin Butler as Elvis and Tom Hanks as Colonel Tom Parker became one of the highest-grossing music biopics ever, earning over $287M worldwide.',
+    href: 'https://www.imdb.com/title/tt3704428/',
+  },
+  {
+    tag: 'Music',
+    date: '2024',
+    title: '"If I Can Dream" — 4K Remaster',
+    body: 'Elvis Presley Enterprises released a stunning 4K remaster of the iconic 1968 Comeback Special, with remixed audio by Chet Haze alongside a new expanded soundtrack album.',
+    href: 'https://www.elvis.com',
+  },
+  {
+    tag: 'Estate',
+    date: '2023',
+    title: 'Graceland Celebrates 45 Years as Museum',
+    body: 'Graceland, Elvis\'s Memphis home, marked 45 years since opening its doors to the public in 1982. Over 20 million visitors have walked through its gates, making it one of the most visited homes in America.',
+    href: 'https://www.graceland.com',
+  },
+  {
+    tag: 'Music',
+    date: '2023',
+    title: '"Welcome to My World" — Complete Box Set',
+    body: 'A 9-disc deluxe box set collecting every studio session and live performance from 1971–1975, including over 50 previously unreleased recordings from the Las Vegas Hilton archives.',
+    href: 'https://www.elvis.com',
+  },
+];
+
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
@@ -197,6 +228,42 @@ export default function Home() {
                 <span className="highlight-arrow">→</span>
               </Link>
             </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── ELVIS NEWS ── */}
+      <section className="elvis-news">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >The King Lives On</motion.h2>
+        <p className="section-sub">Latest news, releases &amp; tributes</p>
+        <div className="divider" />
+        <div className="news-grid">
+          {newsItems.map(({ tag, date, title, body, href }, i) => (
+            <motion.a
+              key={title}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="news-card"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
+              whileHover={{ y: -4 }}
+            >
+              <div className="news-card-meta">
+                <span className="news-tag">{tag}</span>
+                <span className="news-date">{date}</span>
+              </div>
+              <h3 className="news-title">{title}</h3>
+              <p className="news-body">{body}</p>
+              <span className="news-read">Read more →</span>
+            </motion.a>
           ))}
         </div>
       </section>

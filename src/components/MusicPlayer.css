@@ -1,4 +1,4 @@
-/* Floating YouTube player — bottom-left */
+/* Floating audio player — bottom-left */
 .yt-player {
   position: fixed;
   bottom: 20px;
@@ -57,7 +57,7 @@
   border: none;
   color: rgba(255,255,255,0.3);
   cursor: pointer;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   padding: 3px 6px;
   border-radius: 4px;
   transition: color 0.15s, background 0.15s;
@@ -69,18 +69,52 @@
   background: rgba(201,168,76,0.1);
 }
 
-/* YouTube iframe */
-.yt-iframe {
-  display: block;
-  border: none;
-  width: 280px;
-  height: 157px;
+/* Player body */
+.mp-body {
+  padding: 12px 14px 14px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Minimized state */
-.yt-player--min {
-  width: 280px;
+.mp-hint {
+  font-size: 0.7rem;
+  color: rgba(201,168,76,0.55);
+  text-align: center;
+  font-style: italic;
 }
+
+/* Visualizer bars */
+.mp-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 28px;
+}
+
+.mp-bar {
+  display: block;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--gold, #c9a84c);
+  height: 4px;
+  opacity: 0.35;
+  transition: height 0.1s;
+}
+
+.mp-bar--active {
+  opacity: 0.75;
+  animation: barBounce 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes barBounce {
+  from { height: 4px; }
+  to   { height: 24px; }
+}
+
+/* Minimized state — just the bar */
+.yt-player--min .mp-body { display: none; }
 
 /* Mobile */
 @media (max-width: 480px) {
@@ -89,9 +123,5 @@
     left: 12px;
     right: 12px;
     width: auto;
-  }
-  .yt-iframe {
-    width: 100%;
-    height: calc((100vw - 26px) * 9 / 16);
   }
 }

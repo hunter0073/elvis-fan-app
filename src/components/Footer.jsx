@@ -12,7 +12,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ '--footer-logo-url': `url(${BASE}logo.png)` }}>
 
       {/* Logo centrepiece */}
       <div className="footer-logo-wrap">
