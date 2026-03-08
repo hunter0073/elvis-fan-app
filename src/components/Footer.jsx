@@ -1,21 +1,34 @@
 import './Footer.css';
 
+const BASE = import.meta.env.BASE_URL;
+
 const links = [
-  { label: 'Official Website', href: 'https://www.elvis.com', desc: 'elvis.com' },
-  { label: 'Graceland', href: 'https://www.graceland.com', desc: 'graceland.com' },
-  { label: 'Elvis on Spotify', href: 'https://open.spotify.com/artist/43ZHCT0cAZBISjO8DG9PnE', desc: 'Spotify' },
-  { label: 'Elvis on YouTube', href: 'https://www.youtube.com/@Elvis', desc: 'YouTube' },
-  { label: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Elvis_Presley', desc: 'Wikipedia' },
+  { label: 'Official Website', href: 'https://www.elvis.com',                                          desc: 'elvis.com' },
+  { label: 'Graceland',        href: 'https://www.graceland.com',                                      desc: 'graceland.com' },
+  { label: 'Elvis on Spotify', href: 'https://open.spotify.com/artist/43ZHCT0cAZBISjO8DG9PnE',        desc: 'Spotify' },
+  { label: 'Elvis on YouTube', href: 'https://www.youtube.com/@Elvis',                                 desc: 'YouTube' },
+  { label: 'Wikipedia',        href: 'https://en.wikipedia.org/wiki/Elvis_Presley',                    desc: 'Wikipedia' },
 ];
 
 export default function Footer() {
   return (
     <footer className="footer">
+
+      {/* Logo centrepiece */}
+      <div className="footer-logo-wrap">
+        <img
+          src={`${BASE}logo.png`}
+          alt="Elvis Fan Site — Forever The King"
+          className="footer-logo"
+          onError={e => { e.currentTarget.style.display = 'none'; }}
+        />
+        <p className="footer-tagline">Forever The King</p>
+      </div>
+
       <div className="footer-inner">
         <div className="footer-brand">
-          <span className="footer-ep">EP</span>
           <div>
-            <p className="footer-name">Elvis Presley</p>
+            <p className="footer-name">Elvis Presley Fan Site</p>
             <p className="footer-dates">January 8, 1935 — August 16, 1977</p>
           </div>
         </div>
@@ -36,10 +49,9 @@ export default function Footer() {
           Photos sourced from{' '}
           <a href="https://commons.wikimedia.org/wiki/Category:Elvis_Presley" target="_blank" rel="noopener noreferrer">
             Wikimedia Commons
-          </a>{' '}
-          (public domain). Music previews via Spotify.
+          </a>. Music via YouTube.
         </p>
-        <p className="footer-credit">Made with passion and zero knowledge by Liron Bachar</p>
+        <p className="footer-credit">Made with passion by Liron Bachar</p>
       </div>
     </footer>
   );

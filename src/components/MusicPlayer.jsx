@@ -1,87 +1,44 @@
 import { useState } from 'react';
 import './MusicPlayer.css';
 
-const TRACKS = [
-  { id: '1H5IfYyIIAlgDX8zguUzns', title: 'Suspicious Minds',           year: 1969 },
-  { id: '44AyOl4qVkzS48vBsbNXaC', title: "Can't Help Falling in Love", year: 1961 },
-  { id: '0JOw67rq2X6NDz5AJP9uIG', title: 'Hound Dog',                  year: 1956 },
-  { id: '6xNwKNYZcvgV3XTIwsgNio', title: 'Heartbreak Hotel',            year: 1956 },
-];
+// YouTube video ID for "Suspicious Minds" live Las Vegas 1970
+// If this video becomes unavailable, replace the ID below
+const VIDEO_ID = 'T1g5tVGZhfk';
 
-// active = true means the user has already clicked (user gesture done)
-// so Spotify's autoplay=1 will be honoured by the browser
-export default function MusicPlayer({ active = false }) {
-  const [open, setOpen] = useState(false);
-  const [trackIdx, setTrackIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
+const EMBED = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}`
+  + `?autoplay=1&loop=1&playlist=${VIDEO_ID}`
+  + `&rel=0&modestbranding=1&controls=1`;
 
-  if (!visible) return null;
+export default function MusicPlayer() {
+  const [minimized, setMinimized] = useState(false);
+  const [hidden, setHidden]       = useState(false);
 
-  const track = TRACKS[trackIdx];
-
-  // Build embed URL — autoplay=1 only works after a user gesture
-  const embedSrc = active
-    ? `https://open.spotify.com/embed/track/${track.id}?utm_source=generator&theme=0&autoplay=1`
-    : null;
+  if (hidden) return null;
 
   return (
-    <div className={`music-player ${open ? 'music-player--open' : ''}`}>
-      {/* Header row */}
-      <div className="music-header">
-        <button
-          className="music-toggle"
-          onClick={() => setOpen(o => !o)}
-          title={open ? 'Collapse player' : 'Open music player'}
-        >
-          <span className="music-note">♪</span>
-          <span className="music-toggle-label">
-            {open ? track.title : 'Now Playing'}
-          </span>
-          <span className="music-chevron">{open ? '▾' : '▸'}</span>
-        </button>
-        <button
-          className="music-close"
-          onClick={() => setVisible(false)}
-          title="Hide player"
-          aria-label="Hide music player"
-        >
-          ✕
-        </button>
+    <div className={`yt-player ${minimized ? 'yt-player--min' : ''}`}>
+      {/* Title bar */}
+      <div className="yt-bar">
+        <span className="yt-now">♪ Suspicious Minds — Live, Las Vegas 1970</span>
+        <div className="yt-controls">
+          <button onClick={() => setMinimized(m => !m)} title={minimized ? 'Expand' : 'Minimise'}>
+            {minimized ? '▲' : '▼'}
+          </button>
+          <button onClick={() => setHidden(true)} title="Close">✕</button>
+        </div>
       </div>
 
-      {/* Expandable body */}
-      {open && active && (
-        <div className="music-body">
-          {/* Track selector */}
-          <div className="music-tracks">
-            {TRACKS.map((t, i) => (
-              <button
-                key={t.id}
-                className={`music-track-btn ${i === trackIdx ? 'active' : ''}`}
-                onClick={() => setTrackIdx(i)}
-              >
-                <span className="mtrack-dot" />
-                <span className="mtrack-title">{t.title}</span>
-                <span className="mtrack-year">{t.year}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Spotify embed — key forces re-mount (and autoplay) on track change */}
-          {embedSrc && (
-            <iframe
-              key={track.id}
-              src={embedSrc}
-              width="100%"
-              height="80"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="eager"
-              title={track.title}
-              className="music-embed"
-            />
-          )}
-          <p className="music-note-text">Powered by Spotify · No account required for preview</p>
-        </div>
+      {/* YouTube iframe — must remain visible per YouTube ToS; allow="autoplay" makes it play on load */}
+      {!minimized && (
+        <iframe
+          src={EMBED}
+          title="Suspicious Minds — Elvis Presley Live Las Vegas 1970"
+          width="280"
+          height="157"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+          className="yt-iframe"
+        />
       )}
     </div>
   );

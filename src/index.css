@@ -49,6 +49,17 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
+/* ── GLOBAL MOBILE ── */
+@media (max-width: 768px) {
+  .page { padding: 88px 16px 48px; }
+  .page-title { font-size: clamp(1.6rem, 7vw, 2.4rem) !important; }
+  .page-subtitle { font-size: 0.92rem; margin-bottom: 36px; }
+}
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .page { padding: 80px 14px 40px; }
+}
+
 .page-title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   color: var(--gold);

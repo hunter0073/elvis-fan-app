@@ -19,21 +19,20 @@
   align-items: center;
   gap: 10px;
   z-index: 201;
+  text-decoration: none;
 }
 
-.brand-ep {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--black);
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
   flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(201,168,76,0.35));
+  transition: filter 0.25s;
+}
+
+.navbar-brand:hover .brand-logo {
+  filter: drop-shadow(0 0 12px rgba(201,168,76,0.7));
 }
 
 .brand-text {
@@ -114,15 +113,30 @@
 
 .mobile-menu {
   list-style: none;
-  background: rgba(15, 15, 15, 0.98);
-  border-left: 1px solid var(--dark-border);
+  background: rgba(8, 5, 0, 0.98);
+  border-left: 1px solid rgba(201,168,76,0.15);
   width: min(280px, 80vw);
   height: 100%;
-  padding: 90px 24px 40px;
+  padding: 80px 24px 40px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   animation: slideIn 0.25s ease;
+}
+
+.mobile-logo-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+.mobile-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(201,168,76,0.4));
 }
 
 @keyframes slideIn {

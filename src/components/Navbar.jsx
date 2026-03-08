@@ -2,6 +2,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 
+const BASE = import.meta.env.BASE_URL;
+
 const links = [
   { to: '/', label: 'Home' },
   { to: '/biography', label: 'Biography' },
@@ -9,17 +11,14 @@ const links = [
   { to: '/gallery', label: 'Gallery' },
   { to: '/movies', label: 'Movies' },
   { to: '/music', label: 'Music' },
-  { to: '/trivia', label: 'Trivia' },
+  { to: '/rare-facts', label: 'Rare Facts' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  // Close menu on route change
   useEffect(() => { setOpen(false); }, [location.pathname]);
-
-  // Prevent body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -27,10 +26,15 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <span className="brand-ep">EP</span>
+      <NavLink to="/" className="navbar-brand" end>
+        <img
+          src={`${BASE}logo.png`}
+          alt="Elvis Fan Site"
+          className="brand-logo"
+          onError={e => { e.currentTarget.style.display = 'none'; }}
+        />
         <span className="brand-text">Elvis Presley</span>
-      </div>
+      </NavLink>
 
       {/* Desktop links */}
       <ul className="navbar-links">
@@ -40,17 +44,15 @@ export default function Navbar() {
               to={to}
               className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
               end={to === '/'}
-            >
-              {label}
-            </NavLink>
+            >{label}</NavLink>
           </li>
         ))}
       </ul>
 
-      {/* Hamburger button */}
+      {/* Hamburger */}
       <button
         className={`hamburger ${open ? 'open' : ''}`}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen(v => !v)}
         aria-label="Toggle menu"
       >
         <span /><span /><span />
@@ -59,7 +61,15 @@ export default function Navbar() {
       {/* Mobile drawer */}
       {open && (
         <div className="mobile-overlay" onClick={() => setOpen(false)}>
-          <ul className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+          <ul className="mobile-menu" onClick={e => e.stopPropagation()}>
+            <li className="mobile-logo-row">
+              <img
+                src={`${BASE}logo.png`}
+                alt="Elvis Fan Site"
+                className="mobile-logo"
+                onError={e => { e.currentTarget.style.display = 'none'; }}
+              />
+            </li>
             {links.map(({ to, label }) => (
               <li key={to}>
                 <NavLink
@@ -67,9 +77,7 @@ export default function Navbar() {
                   className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
                   end={to === '/'}
                   onClick={() => setOpen(false)}
-                >
-                  {label}
-                </NavLink>
+                >{label}</NavLink>
               </li>
             ))}
           </ul>
