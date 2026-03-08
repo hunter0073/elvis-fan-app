@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './MusicPlayer.css';
 
 const BASE = import.meta.env.BASE_URL;
-const TRACK = `${BASE}performance.flac`;
+const TRACK = `${BASE}elvis_presley-suspicious_minds_live.mp3`;
 const LABEL = '♪ Suspicious Minds — Live, Las Vegas 1970';
 
 export default function MusicPlayer() {
