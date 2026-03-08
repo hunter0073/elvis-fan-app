@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import MusicPlayer from '../components/MusicPlayer';
 import './Home.css';
 
 const highlights = [
@@ -33,8 +32,6 @@ const fadeUp = {
 export default function Home() {
   return (
     <div className="home">
-      <MusicPlayer />
-
       {/* Hero */}
       <section className="hero">
         {/* Vinyl record art */}
