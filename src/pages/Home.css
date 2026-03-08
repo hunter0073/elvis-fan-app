@@ -8,32 +8,103 @@
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-}
-
-.hero-image-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-
-.hero-image-overlay {
-  position: absolute;
-  inset: 0;
   background:
-    linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.1) 100%),
-    linear-gradient(to top,   rgba(10,10,10,0.85) 0%, transparent 45%);
+    radial-gradient(ellipse 70% 80% at 80% 40%, rgba(90,50,5,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 15% 65%, rgba(180,120,10,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #100800 0%, #080808 100%);
+}
+
+/* ============================================================
+   VINYL RECORD ART
+   ============================================================ */
+.hero-vinyl {
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: vinylSpin 28s linear infinite;
+}
+
+@keyframes vinylSpin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+.vinyl-outer {
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #181818 0px,
+      #1c1c1c 1px,
+      #141414 2px,
+      #1c1c1c 3px,
+      #181818 4px,
+      #111 5px
+    );
+  box-shadow:
+    0 0 0 2px rgba(201,168,76,0.08),
+    0 0 60px rgba(201,168,76,0.04),
+    inset 0 0 80px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.35;
+}
+
+.vinyl-label {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(201,168,76,0.22), rgba(120,80,0,0.18));
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vinyl-ep {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: rgba(201,168,76,0.7);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.vinyl-rca {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.45);
+  font-weight: 600;
+}
+
+/* Big decorative year background text */
+.hero-year-bg {
+  position: absolute;
+  right: 5%;
+  bottom: -2%;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(8rem, 18vw, 18rem);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,168,76,0.07);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  white-space: nowrap;
 }
 
 /* EPiC Vegas stage-light glow */
@@ -124,7 +195,46 @@
   position: relative;
   z-index: 3;
   max-width: 600px;
-  padding: 120px 60px 80px;
+  padding: 120px 60px 40px;
+}
+
+/* Stats strip at bottom of hero */
+.hero-stats {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 0;
+  padding: 0 60px 60px;
+  margin-top: 8px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 32px 16px 0;
+  margin-right: 32px;
+  border-right: 1px solid rgba(201,168,76,0.18);
+}
+
+.hero-stat:last-child {
+  border-right: none;
+}
+
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .hero-eyebrow {
@@ -271,12 +381,11 @@
 /* Scroll hint */
 .scroll-hint {
   position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 24px;
+  right: 40px;
   z-index: 3;
-  color: rgba(201,168,76,0.6);
-  font-size: 1.4rem;
+  color: rgba(201,168,76,0.5);
+  font-size: 1.2rem;
 }
 
 /* ============================================================
@@ -441,19 +550,40 @@
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
-  .hero-content {
-    padding: 110px 24px 60px;
-    text-align: center;
+  .hero {
+    align-items: center;
   }
-  .hero-image-overlay {
-    background:
-      linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.9) 100%);
+  .hero-content {
+    padding: 100px 24px 24px;
+    text-align: center;
   }
   .hero-quote {
     text-align: left;
   }
   .hero-cta {
     justify-content: center;
+  }
+  .hero-stats {
+    padding: 0 24px 48px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 8px 20px 12px 0;
+    margin-right: 16px;
+  }
+  .hero-vinyl {
+    right: -160px;
+    opacity: 0.18;
+  }
+  .vinyl-outer {
+    width: 340px;
+    height: 340px;
+  }
+  .hero-year-bg {
+    font-size: clamp(5rem, 22vw, 8rem);
   }
   .highlights, .facts {
     padding: 60px 24px;

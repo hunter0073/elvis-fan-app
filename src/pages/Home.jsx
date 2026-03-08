@@ -37,17 +37,17 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
-        <motion.div
-          className="hero-image-wrap"
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: 'easeOut' }}
-        >
-          <img src="/elvis-hero.jpg" alt="Elvis Presley performing live" className="hero-photo" />
-          <div className="hero-image-overlay" />
-        </motion.div>
+        {/* Vinyl record art */}
+        <div className="hero-vinyl" aria-hidden="true">
+          <div className="vinyl-outer">
+            <div className="vinyl-label">
+              <span className="vinyl-ep">EP</span>
+              <span className="vinyl-rca">RCA Victor</span>
+            </div>
+          </div>
+        </div>
 
-        {/* Sweeping spotlights (EPiC Vegas stage) */}
+        {/* Sweeping spotlights */}
         <div className="hero-spotlight" aria-hidden="true" />
 
         {/* Film grain */}
@@ -65,6 +65,9 @@ export default function Home() {
             />
           ))}
         </div>
+
+        {/* Big decorative year */}
+        <div className="hero-year-bg" aria-hidden="true">1935</div>
 
         <motion.div className="hero-content" variants={stagger} initial="initial" animate="animate">
           <motion.p className="hero-eyebrow" variants={fadeUp}>The King of Rock and Roll</motion.p>
@@ -99,6 +102,26 @@ export default function Home() {
             <Link to="/biography" className="btn-primary">Explore His Life</Link>
             <Link to="/discography" className="btn-secondary">His Music</Link>
           </motion.div>
+        </motion.div>
+
+        {/* Stats strip */}
+        <motion.div
+          className="hero-stats"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.7 }}
+        >
+          {[
+            { num: '500M+', label: 'Records Sold' },
+            { num: '18', label: 'No.1 Singles' },
+            { num: '33', label: 'Films' },
+            { num: '3', label: 'Grammys' },
+          ].map(({ num, label }) => (
+            <div key={label} className="hero-stat">
+              <span className="hero-stat-num">{num}</span>
+              <span className="hero-stat-label">{label}</span>
+            </div>
+          ))}
         </motion.div>
 
         <motion.div

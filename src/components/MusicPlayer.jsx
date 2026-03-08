@@ -1,77 +1,79 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import './MusicPlayer.css';
 
-// To use: place an MP3 of the song at /public/bg-music.mp3
-// Recommended: "Suspicious Minds" live – download from a licensed source
-// e.g. purchase on iTunes/Amazon Music, then place the file as /public/bg-music.mp3
-export default function MusicPlayer({ src = '/bg-music.mp3' }) {
-  const audioRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.35);
+const TRACKS = [
+  { id: '1H5IfYyIIAlgDX8zguUzns', title: 'Suspicious Minds', year: 1969 },
+  { id: '44AyOl4qVkzS48vBsbNXaC', title: "Can't Help Falling in Love", year: 1961 },
+  { id: '0JOw67rq2X6NDz5AJP9uIG', title: 'Hound Dog', year: 1956 },
+  { id: '6xNwKNYZcvgV3XTIwsgNio', title: 'Heartbreak Hotel', year: 1956 },
+];
+
+export default function MusicPlayer() {
+  const [open, setOpen] = useState(false);
+  const [trackIdx, setTrackIdx] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    audio.volume = volume;
-    audio.loop = true;
-    // Attempt autoplay on first user gesture
-    const tryPlay = () => {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
-      window.removeEventListener('click', tryPlay);
-      window.removeEventListener('keydown', tryPlay);
-    };
-    window.addEventListener('click', tryPlay, { once: true });
-    window.addEventListener('keydown', tryPlay, { once: true });
-    return () => {
-      window.removeEventListener('click', tryPlay);
-      window.removeEventListener('keydown', tryPlay);
-    };
-  }, []);
+  if (!visible) return null;
 
-  useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = volume;
-  }, [volume]);
-
-  const toggle = (e) => {
-    e.stopPropagation();
-    const audio = audioRef.current;
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-    } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
-    }
-  };
+  const track = TRACKS[trackIdx];
 
   return (
-    <>
-      <audio ref={audioRef} src={src} preload="none" />
-      {visible && (
-        <div className="music-player">
-          <button className="music-btn" onClick={toggle} title={playing ? 'Pause music' : 'Play music'}>
-            <span className="music-icon">{playing ? '❚❚' : '▶'}</span>
-            <span className="music-bars" aria-hidden="true">
-              {[1, 2, 3, 4].map((i) => (
-                <span key={i} className={`bar bar-${i} ${playing ? 'animate' : ''}`} />
-              ))}
-            </span>
-          </button>
-          {playing && (
-            <input
-              className="music-volume"
-              type="range"
-              min="0"
-              max="1"
-              step="0.05"
-              value={volume}
-              onChange={(e) => setVolume(Number(e.target.value))}
-              title="Volume"
-              onClick={(e) => e.stopPropagation()}
-            />
-          )}
-          <button className="music-close" onClick={(e) => { e.stopPropagation(); setVisible(false); }} title="Hide player">✕</button>
+    <div className={`music-player ${open ? 'music-player--open' : ''}`}>
+      {/* Header row */}
+      <div className="music-header">
+        <button
+          className="music-toggle"
+          onClick={() => setOpen(o => !o)}
+          title={open ? 'Collapse player' : 'Open music player'}
+        >
+          <span className="music-note">♪</span>
+          <span className="music-toggle-label">
+            {open ? track.title : 'Now Playing'}
+          </span>
+          <span className="music-chevron">{open ? '▾' : '▸'}</span>
+        </button>
+        <button
+          className="music-close"
+          onClick={() => setVisible(false)}
+          title="Hide player"
+          aria-label="Hide music player"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Expandable body */}
+      {open && (
+        <div className="music-body">
+          {/* Track selector */}
+          <div className="music-tracks">
+            {TRACKS.map((t, i) => (
+              <button
+                key={t.id}
+                className={`music-track-btn ${i === trackIdx ? 'active' : ''}`}
+                onClick={() => setTrackIdx(i)}
+              >
+                <span className="mtrack-dot" />
+                <span className="mtrack-title">{t.title}</span>
+                <span className="mtrack-year">{t.year}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Spotify embed */}
+          <iframe
+            key={track.id}
+            src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator&theme=0`}
+            width="100%"
+            height="80"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title={track.title}
+            className="music-embed"
+          />
+          <p className="music-note-text">Powered by Spotify · No account required for preview</p>
         </div>
       )}
-    </>
+    </div>
   );
 }
