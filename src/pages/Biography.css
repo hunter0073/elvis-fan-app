@@ -5,7 +5,8 @@
 /* ── CHAPTERS ──────────────────────────────────────────── */
 .bio-chapter {
   margin-bottom: 64px;
-  border-left: 3px solid var(--gold-dark);
+  border-left: 3px solid transparent;
+  border-image: var(--gold-gradient) 1;
   padding-left: 28px;
   position: relative;
 }
@@ -45,6 +46,8 @@
   font-size: clamp(1.35rem, 3vw, 1.9rem);
   color: var(--white);
   line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 20px rgba(201,168,76,0.12), 0 2px 4px rgba(18,10,25,0.5);
 }
 
 .chapter-body {
@@ -76,12 +79,23 @@
   border: 1px solid var(--dark-border);
   border-radius: 14px;
   padding: 28px;
-  transition: border-color 0.25s;
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
-
+.figure-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-12deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .figure-card:hover {
   border-color: rgba(201,168,76,0.4);
+  box-shadow: var(--shadow-velvet);
 }
+.figure-card:hover::after { transform: translateX(350%) skewX(-12deg); }
 
 .figure-header {
   display: flex;

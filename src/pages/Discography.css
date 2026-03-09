@@ -48,18 +48,28 @@
   font-size: 0.95rem;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s, background 0.3s, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
-
+.disco-tab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-12deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .disco-tab:hover {
   border-color: var(--gold-dark);
   color: var(--text);
 }
-
+.disco-tab:hover::after { transform: translateX(350%) skewX(-12deg); }
 .disco-tab.active {
   background: rgba(201, 168, 76, 0.12);
   border-color: var(--gold);
   color: var(--gold);
+  box-shadow: 0 0 14px rgba(201,168,76,0.15), var(--shadow-velvet-sm);
 }
 
 /* Albums */
@@ -76,12 +86,23 @@
   border-radius: 12px;
   padding: 24px;
   align-items: flex-start;
-  transition: border-color 0.2s;
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
-
+.album-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-12deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .album-card:hover {
   border-color: var(--gold-dark);
+  box-shadow: var(--shadow-velvet);
 }
+.album-card:hover::after { transform: translateX(350%) skewX(-12deg); }
 
 /* Vinyl record decoration */
 .album-vinyl {
@@ -106,10 +127,11 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  background: var(--gold-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 8px rgba(201,168,76,0.3);
 }
 
 .vinyl-label span {
@@ -184,12 +206,23 @@
   background: var(--dark-card);
   border: 1px solid var(--dark-border);
   border-radius: 8px;
-  transition: border-color 0.2s;
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
-
+.single-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-12deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .single-row:hover {
   border-color: var(--gold-dark);
+  box-shadow: var(--shadow-velvet-sm);
 }
+.single-row:hover::after { transform: translateX(350%) skewX(-12deg); }
 
 .single-year {
   font-size: 0.8rem;
