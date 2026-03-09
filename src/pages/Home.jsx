@@ -40,34 +40,66 @@ const vegasPhotos = [
   },
 ];
 
-const newsItems = [
+const tickerItems = [
   {
-    tag: 'Film',
-    date: '2022',
+    tag: 'Film',    date: '2022',
     title: 'Baz Luhrmann\'s "Elvis" Biopic',
-    body: 'Warner Bros\' blockbuster starring Austin Butler as Elvis and Tom Hanks as Colonel Tom Parker became one of the highest-grossing music biopics ever, earning over $287M worldwide.',
+    body: 'Austin Butler stars as Elvis, Tom Hanks as Colonel Parker. One of the highest-grossing music biopics ever — $287M worldwide.',
     href: 'https://www.imdb.com/title/tt3704428/',
   },
   {
-    tag: 'Music',
-    date: '2024',
+    tag: 'Music',   date: '2024',
     title: '"If I Can Dream" — 4K Remaster',
-    body: 'Elvis Presley Enterprises released a stunning 4K remaster of the iconic 1968 Comeback Special, with remixed audio by Chet Haze alongside a new expanded soundtrack album.',
-    href: 'https://www.elvis.com',
+    body: 'Elvis Presley Enterprises released a 4K remaster of the iconic 1968 Comeback Special with fully remixed audio.',
+    href: 'https://www.elvisthemusic.com',
   },
   {
-    tag: 'Estate',
-    date: '2023',
-    title: 'Graceland Celebrates 45 Years as Museum',
-    body: 'Graceland, Elvis\'s Memphis home, marked 45 years since opening its doors to the public in 1982. Over 20 million visitors have walked through its gates, making it one of the most visited homes in America.',
+    tag: 'Estate',  date: '2023',
+    title: 'Graceland Celebrates 45 Years',
+    body: 'Over 20 million visitors have walked through Graceland\'s gates since 1982 — one of America\'s most-visited private homes.',
     href: 'https://www.graceland.com',
   },
   {
-    tag: 'Music',
-    date: '2023',
-    title: '"Welcome to My World" — Complete Box Set',
-    body: 'A 9-disc deluxe box set collecting every studio session and live performance from 1971–1975, including over 50 previously unreleased recordings from the Las Vegas Hilton archives.',
-    href: 'https://www.elvis.com',
+    tag: 'Music',   date: '2023',
+    title: '"Welcome to My World" Box Set',
+    body: '9-disc deluxe set with 50+ unreleased studio sessions and live performances from the Las Vegas Hilton archives (1971–1975).',
+    href: 'https://www.elvisthemusic.com',
+  },
+  {
+    tag: 'Legacy',  date: '2023',
+    title: 'Rock & Roll Hall of Fame: 50 Years',
+    body: 'The Hall commemorated the 50th anniversary of Elvis\'s legendary 1973 Aloha from Hawaii satellite broadcast — watched by 1.5 billion people.',
+    href: 'https://www.rockhall.com/inductees/elvis-presley',
+  },
+  {
+    tag: 'Music',   date: '2022',
+    title: '"Suspicious Minds" Tops Streaming Charts',
+    body: 'Following the Baz Luhrmann biopic, Suspicious Minds re-entered global streaming charts for the first time in over a decade.',
+    href: 'https://www.elvisthemusic.com',
+  },
+  {
+    tag: 'Film',    date: '2023',
+    title: 'Austin Butler — Golden Globe Winner',
+    body: 'Austin Butler won the Golden Globe for Best Actor in a Motion Picture Drama for his portrayal of Elvis in Luhrmann\'s biopic.',
+    href: 'https://www.imdb.com/name/nm7286814/',
+  },
+  {
+    tag: 'Estate',  date: '2024',
+    title: 'Elvis.com Relaunches with New Archives',
+    body: 'The official Elvis Presley website unveiled a comprehensive digital archive featuring 10,000+ unseen photos, concert recordings, and personal letters.',
+    href: 'https://www.elvisthemusic.com',
+  },
+  {
+    tag: 'Legacy',  date: '2022',
+    title: 'TCB Band Reunion Concert',
+    body: 'Elvis\'s original Las Vegas band, the TCB Band, reunited for a tribute performance at the Hilton Las Vegas — site of Elvis\'s legendary residency.',
+    href: 'https://www.elvisthemusic.com',
+  },
+  {
+    tag: 'Music',   date: '2021',
+    title: '"An Evening Prayer" — Newly Discovered',
+    body: 'A previously unknown studio recording from 1971 was authenticated and released for the first time — a gospel ballad taped after midnight at Graceland.',
+    href: 'https://www.elvisthemusic.com',
   },
 ];
 
@@ -232,7 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── ELVIS NEWS ── */}
+      {/* ── NEWS TICKER (credits style) ── */}
       <section className="elvis-news">
         <motion.h2
           className="section-title"
@@ -242,29 +274,26 @@ export default function Home() {
         >The King Lives On</motion.h2>
         <p className="section-sub">Latest news, releases &amp; tributes</p>
         <div className="divider" />
-        <div className="news-grid">
-          {newsItems.map(({ tag, date, title, body, href }, i) => (
-            <motion.a
-              key={title}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="news-card"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
-              whileHover={{ y: -4 }}
-            >
-              <div className="news-card-meta">
-                <span className="news-tag">{tag}</span>
-                <span className="news-date">{date}</span>
-              </div>
-              <h3 className="news-title">{title}</h3>
-              <p className="news-body">{body}</p>
-              <span className="news-read">Read more →</span>
-            </motion.a>
-          ))}
+        <div className="ticker-window">
+          <div className="ticker-track">
+            {[...tickerItems, ...tickerItems].map(({ tag, date, title, body, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ticker-item"
+              >
+                <div className="ticker-meta">
+                  <span className="ticker-tag">{tag}</span>
+                  <span className="ticker-date">{date}</span>
+                </div>
+                <h3 className="ticker-title">{title}</h3>
+                <p className="ticker-body">{body}</p>
+                <span className="ticker-read">Read more →</span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

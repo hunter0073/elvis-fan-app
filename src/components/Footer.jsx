@@ -3,10 +3,10 @@ import './Footer.css';
 const BASE = import.meta.env.BASE_URL;
 
 const links = [
-  { label: 'Official Website', href: 'https://www.elvis.com',                                          desc: 'elvis.com' },
+  { label: 'Official Website', href: 'https://www.elvisthemusic.com',                                  desc: 'elvisthemusic.com' },
   { label: 'Graceland',        href: 'https://www.graceland.com',                                      desc: 'graceland.com' },
   { label: 'Elvis on Spotify', href: 'https://open.spotify.com/artist/43ZHCT0cAZBISjO8DG9PnE',        desc: 'Spotify' },
-  { label: 'Elvis on YouTube', href: 'https://www.youtube.com/@Elvis',                                 desc: 'YouTube' },
+  { label: 'Elvis on YouTube', href: 'https://www.youtube.com/elvis',                                  desc: 'YouTube' },
   { label: 'Wikipedia',        href: 'https://en.wikipedia.org/wiki/Elvis_Presley',                    desc: 'Wikipedia' },
 ];
 
