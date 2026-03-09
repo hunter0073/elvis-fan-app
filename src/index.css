@@ -40,7 +40,7 @@ body {
 }
 
 /* ── GLOBAL FILM-STOCK GRAIN OVERLAY ──
-   1.5% opacity — adds analog texture without looking digital-flat */
+   Static 1.5% opacity — no animation to avoid constant CPU repaints */
 body::after {
   content: '';
   position: fixed;
@@ -50,13 +50,6 @@ body::after {
   opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-  animation: bodyGrain 0.2s steps(1) infinite;
-}
-@keyframes bodyGrain {
-  0%  { background-position: 0 0; }
-  25% { background-position: -25px 12px; }
-  50% { background-position: 12px -18px; }
-  75% { background-position: -8px 25px; }
 }
 
 /* ── GLOBAL SHIMMER KEYFRAME ── */
