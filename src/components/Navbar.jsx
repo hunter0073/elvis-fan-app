@@ -2,8 +2,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 
-const BASE = import.meta.env.BASE_URL;
-
 const links = [
   { to: '/', label: 'Home' },
   { to: '/biography', label: 'Biography' },
@@ -27,12 +25,6 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <NavLink to="/" className="navbar-brand" end>
-        <img
-          src={`${BASE}logo.png`}
-          alt="Elvis Fan Site"
-          className="brand-logo"
-          onError={e => { e.currentTarget.style.display = 'none'; }}
-        />
         <span className="brand-text">Elvis Presley</span>
       </NavLink>
 
@@ -62,14 +54,6 @@ export default function Navbar() {
       {open && (
         <div className="mobile-overlay" onClick={() => setOpen(false)}>
           <ul className="mobile-menu" onClick={e => e.stopPropagation()}>
-            <li className="mobile-logo-row">
-              <img
-                src={`${BASE}logo.png`}
-                alt="Elvis Fan Site"
-                className="mobile-logo"
-                onError={e => { e.currentTarget.style.display = 'none'; }}
-              />
-            </li>
             {links.map(({ to, label }) => (
               <li key={to}>
                 <NavLink

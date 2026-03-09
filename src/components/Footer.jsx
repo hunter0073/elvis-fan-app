@@ -14,17 +14,6 @@ export default function Footer() {
   return (
     <footer className="footer" style={{ '--footer-logo-url': `url(${BASE}logo.png)` }}>
 
-      {/* Logo centrepiece */}
-      <div className="footer-logo-wrap">
-        <img
-          src={`${BASE}logo.png`}
-          alt="Elvis Fan Site — Forever The King"
-          className="footer-logo"
-          onError={e => { e.currentTarget.style.display = 'none'; }}
-        />
-        <p className="footer-tagline">Forever The King</p>
-      </div>
-
       <div className="footer-inner">
         <div className="footer-brand">
           <div>
